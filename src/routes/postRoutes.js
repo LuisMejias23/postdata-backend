@@ -43,6 +43,7 @@ router.get("/", async (req, res) => {
   try {
     const posts = await Post.find({})
       .populate("user", "username")
+      .populate("comments.user", "username")
       .sort({ createdAt: -1 });
 
     res.status(200).json({
